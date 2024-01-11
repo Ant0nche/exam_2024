@@ -96,61 +96,60 @@
                 </div>
             </section>
             
-            <div class="container mt-5">
-                <h1 class="text-center mb-4" id="section1">Наши маршруты</h1>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <div class="input-group input-group-sm">
-                            <span class="input-group-text">Название</span>
-                            <input type="text" class="form-control" aria-label="Small input group">
+            <section id="routes">
+                <div class="container py-3 mt-5">
+                    <h2>Список маршрутов</h2>
+                    <form class="row" id="routes-form">
+                        <div class="col-12 col-lg-6 my-2">
+                            <input id="searchRoute" name="search" class="form-control" placeholder="Поиск" type="text">
                         </div>
+                        <div class="col-12 col-lg-6 my-2">
+                            <select class="form-control" id="objects" name="objects" placeholder="Основной объект">
+                            </select>
+                        </div>
+                    </form>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr >
+                                    <th scope="col">Название</th>
+                                    <th scope="col">Описание</th>
+                                    <th scope="col">Основные объекты</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="routeTableBody" class="tableRoutes">
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <div class="dropdown">
-                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                            Выберите объект
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li><a class="dropdown-item" href="#">Объект 1</a></li>
-                                <li><a class="dropdown-item" href="#">Объект 2</a></li>
-                                <li><a class="dropdown-item" href="#">Объект 3</a></li>
-                            </ul>
-                        </div>
+                    <div class="d-flex justify-content-center">
+                        <ul class="pagination">
+                        </ul>
                     </div>
                 </div>
-                    
+            </section>
+            <div class="container mt-5">
+                <h1 class="text-center mb-4" id="section2">Наши гиды</h1>
                 <table class="table table-hover table-bordered text-center">
                     <thead>
                         <tr>
-                            <th scope="col">Название</th>
-                            <th scope="col">Описание</th>
-                            <th scope="col">Объект</th>
+                            <th scope="col">ФИО</th>
+                            <th scope="col">Языки</th>
+                            <th scope="col">Опыт работы</th>
+                            <th scope="col">Стоимость</th>
                             <th scope="col">Выбрать</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Заполните данные о маршрутах здесь -->
                     </tbody>
                 </table>
-
-                <div class="container mt-5">
-                    <h1 class="text-center mb-4" id="section2">Наши гиды</h1>
-                    <table class="table table-hover table-bordered text-center">
-                        <thead>
-                            <tr>
-                                <th scope="col">ФИО</th>
-                                <th scope="col">Языки</th>
-                                <th scope="col">Опыт работы</th>
-                                <th scope="col">Стоимость</th>
-                                <th scope="col">Выбрать</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Заполните данные о гидах здесь -->
-                        </tbody>
-                    </table>
-                </div>
-            
+            </div>
+        <footer class="text-body-secondary bg-body-secondary py-5 mt-2">
+            <div class="container">
+                <p class="mb-1">Horizon Adventure</p>
+                <p class="mb-1">Контакты: +7(987)564-32-11</p>
+            </div>
+        </footer>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
                 <script src="script.js"></script>
     </body>

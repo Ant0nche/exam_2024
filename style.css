@@ -1,0 +1,24 @@
+body {
+    background-color: white;
+}
+
+.primary {
+    background-color: #7f1eff; 
+}
+
+.primary:hover {
+    background-color: #7f1eff; 
+}
+
+#routes {
+     background-color: white;
+}
+
+.main-section {
+    flex-shrink: 0; 
+    background-size: cover;
+}
+
+.hide {
+    display: none;
+}
