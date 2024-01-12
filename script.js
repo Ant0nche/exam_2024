@@ -8,7 +8,7 @@ let searchedGuides;
 
 /*Формирует URL для API запросов.*/
 function getURL(path) {
-    let url = new URL(`http://exam-2023-1-api.std-900.ist.mospolytech.ru/api/${path}`);
+    let url = new URL(`https://edu.std-900.ist.mospolytech.ru/api/${path}`);
     url.searchParams.set("api_key", "51f99d95-e6b9-481d-a4fa-b02fba54a3c7");
     return url;
 }
