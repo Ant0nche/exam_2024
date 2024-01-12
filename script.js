@@ -288,8 +288,168 @@ function getGuid() {
     return items;
 }
 
+/*Создает список языков для фильтрации гидов.*/
+function setLanguage() {
+    let items = JSON.parse(sessionStorage.getItem('guides'));
+    let select = document.getElementById('languages');
+    select.innerHTML = '';
+    let uniqueLanguages = ['Любой', ...new Set(items.map(item => item.language))];
+    for (let language of uniqueLanguages) {
+        let option = document.createElement("option");
+        option.innerHTML = language;
+        option.setAttribute("value", language);
+        select.appendChild(option);
+    }
+}
+
+/*Ищет гидов согласно заданным критериям.*/
+function findGuide(form) {
+    let items = JSON.parse(sessionStorage.getItem('guides'));
+    let languages = form.elements['languages'].value;
+    let from = +form.elements['xpFrom'].value;
+    let to = +form.elements['xpTo'].value;
+    let searched = [];
+    if (languages !== 'Любой') {
+        searched = items.filter(item => item.language.includes(languages));
+    } else {
+        searched = [...items];
+    }
+    if (from >= to) {
+        dispErr(document.querySelector('.guide-error-block'), 'Значение ОТ должно быть меньше ДО');
+    } else {
+        searched = searched.filter(item => item.workExperience >= from && item.workExperience <= to);
+    }
+    searchedGuides = searched;
+    if (searched.length === 0) {
+        dispErr(document.querySelector('.guide-error-block'), 'Подходящие гиды не найдены, выведены доступные гиды');
+    }
+    showGuide();
+}
+
+// Определяет коэффициент цены в зависимости от даты.
+function getKbyDate(date) {
+    const specialDates = ['2024-01-01', '2024-01-09', '2024-04-27', '2024-11-02', '2024-12-28'];
+    const weekendDays = [6, 7];
+    const holidayDates = ['2024-02-23', '2024-03-08', '2024-04-29', '2024-04-30', '2024-05-01', '2024-05-09',
+                           '2024-05-10', '2024-06-12', '2024-11-04', '2024-12-30', '2024-12-31'];
+    let checkDay = specialDates.includes(date) ||
+                   (new Date(date).getDay() === 6 && !holidayDates.includes(date)) ||
+                   weekendDays.includes(new Date(date).getDay());
+    return checkDay ? 1.5 : 1;
+}
+
+/*Отображает сообщения об ошибках.*/
+function dispErr(block, message) {
+    const div = document.createElement('div');
+    div.classList.add('alert', 'alert-danger');
+    div.textContent = message;
+    block.appendChild(div);
+    setTimeout(() => {x
+        div.remove();
+    }, 5000);
+}
+
+/*Показывает или скрывает блок заказа.*/
+function showOrder() {
+    let ordereBlock = document.getElementById('order');
+    if (selectedRoute === undefined || selectedGuide === undefined) {
+        ordereBlock.classList.add('hide');
+    }
+    else {
+        ordereBlock.classList.remove('hide');
+    }
+}
+
+/*Обновляет форму заказа в модальном окне.*/
+function formUpd(modal) {
+    let duration = modal.target.querySelector('#duration').value;
+    let count = modal.target.querySelector('#count').value;
+    let time = modal.target.querySelector('#time').value;
+    let date = modal.target.querySelector('#date').value;
+    let option1 = modal.target.querySelector('#option1').checked;
+    let option2 = modal.target.querySelector('#option2').checked;
+    let btn = modal.target.querySelector('#modal-submit');
+    let hour = +time.split(':')[0];
+    let minutes = +time.split(':')[1];
+    if (!(hour >= 9 && hour <= 23 && (minutes == 0 || minutes == 30))) {
+        dispErr(modal.target.querySelector('#modal-errors'), 'Доступно только время с 9 до 23 часов, каждые 30 минут!');
+        btn.classList.add('disabled');
+        return;
+    }
+    if (date == '' || time == '') {
+        dispErr(modal.target.querySelector('#modal-errors'), 'Необходимо указать время и дату!');
+        btn.classList.add('disabled');
+        return;
+    }
+    
+    let isThisDayOff = getKbyDate(date);
+    let morningPrice = hour >= 9 || hour < 12 ? 400 : 0;
+    let eveningPrice = hour >= 20 || hour < 23 ? 1000 : 0;
+    let visitorsPrice = count < 5 ? 0 : count < 10 ? 1000 : 1500;
+    btn.classList.remove('disabled');
+    let price = selectedGuide.pricePerHour * duration * isThisDayOff + morningPrice + eveningPrice + visitorsPrice;
+    let option1Price = option1 ? price * 0.3 : 0;
+    let option2Price = option2 ? count * 500 : 0;
+    price += option2Price + option1Price;
+    price = Math.round(price);
+    modal.target.querySelector('#price').innerHTML = price;
+    btn.onclick = async () => {
+        let form = new FormData();
+        form.append('guide_id', selectedGuide.id);
+        form.append('route_id', selectedRoute.id);
+        form.append('date', date);
+        form.append('time', time);
+        form.append('duration', duration);
+        form.append('persons', count);
+        form.append('price', price);
+        form.append('optionFirst', +option1);
+        form.append('optionSecond', +option2);
+        try {
+            let response = await fetch(getURL('orders'), {
+                method: 'POST',
+                body: form
+            });
+
+            if (!response.ok) {
+                dispErr(modal.target.querySelector('#modal-errors'), 'Ошибка сервера!');
+            } else {
+                document.querySelector('#modal-close').click();
+                btn.classList.remove('disabled');
+            }
+        } catch (error) {
+            console.error('Error submitting the form:', error);
+            dispErr(modal.target.querySelector('#modal-errors'), 'Ошибка при отправке заказа!');
+        }
+    };
+}
+
 /*Инициализирует страницу при загрузке.*/
 window.onload = async () => {
     await getRoute();
     setterObj();
+    let routesForm = document.getElementById('routes-form');
+    routesForm.onsubmit = (event) => {
+        event.preventDefault();
+        findRoute(routesForm);
+    };
+    let select = document.getElementById('objects');
+    select.onchange = function () {
+        findRoute(routesForm);
+    }
+    let guideForm = document.getElementById('guide-form');
+    guideForm.onsubmit = (event) => {
+        event.preventDefault();
+        findGuide(guideForm);
+    };
+    document.getElementById('orderModal').addEventListener('show.bs.modal', function (event) {
+        event.target.querySelector('#fullname').innerHTML = selectedGuide.name;
+        event.target.querySelector('#route-name').innerHTML = selectedRoute.name;
+        event.target.querySelector('#time').value = '09:00';
+        event.target.querySelector('#date').value = Date.now();
+        event.target.querySelector('#duration').onchange = () => formUpd(event);
+        event.target.querySelector('#count').oninput = () => formUpd(event);
+        event.target.querySelector('#time').onchange = () => formUpd(event);
+        event.target.querySelector('#date').onchange = () => formUpd(event);
+        event.target.querySelector('#option1').onchange = () => formUpd(event);
+    });
 }

@@ -174,6 +174,81 @@
                     </div>
                 </div>
             </section>
+
+            <section id="order" class="hide">
+                <div class="py-3 justify-content-center d-flex">
+                    <button type="button" class="btn primary text-white" data-bs-toggle="modal"
+                        data-bs-target="#orderModal">Оформить заказ</button>
+            
+                    <div class="modal fade" id="orderModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                        aria-labelledby="orderModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="orderModalLabel">Оформление заявки</h1>
+                                    <button id="modal-close" type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="modal-errors"></div>
+                                    <form class="row">
+                                        <div class="col-12">
+                                            <p>Экскурсовод: <b id="fullname"></b></p>
+                                        </div>
+                                        <div class="col-12">
+                                            <p>Название маршрута: <b id="route-name"></b></p>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="form-label" for="date">Дата</label>
+                                                    <input id="date" name="date" class="form-control" type="date">
+                                                </div>
+                                                <div class="col-6">
+                                                    <label class="form-label" for="time">Время начала</label>
+                                                    <input id="time" name="time" class="form-control" type="time" value="09:00">
+                                                </div>
+                                                <div class="col-6">
+                                                    <label class="form-label" for="duration">Длительность экскурсии</label>
+                                                    <select class="form-control" id="duration">
+                                                        <option value="1">1 час</option>
+                                                        <option value="2">2 часа</option>
+                                                        <option value="3">3 часа</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-6">
+                                                    <label class="form-label" for="count">Количество участников</label>
+                                                    <input id="count" name="count" class="form-control" type="number" value="1" min="1" max="20">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <p>Дополнительные опции:</p>
+                                        </div>
+                                        <div class="col-12">
+                                            <input id="option1" name="option" type="checkbox">
+                                            <label for="option1" class="">Быстрый выезд гида (в течение часа)</label>
+                                            <p class="link">Повышает стоимость на 30%</p>
+                                        </div>
+                                        <div class="col-12">
+                                            <input id="option2" name="option" type="checkbox">
+                                            <label for="option2" class="">Сопровождение сурдопереводчика</label>
+                                            <p class="link">Увеличивает стоимость на 15% (для 1-5 участников) и на 25% (для 6-10 участников). Недоступно для более 10 участников.</p>
+                                        </div>
+                                        <div class="col-12">
+                                            <p>Итоговая стоимость: <b id="price"></b></p>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                                    <button id="modal-submit" type="button" class="btn primary text-white disabled">Отправить</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         <footer class="text-body-secondary bg-body-secondary py-5 mt-2">
             <div class="container">
                 <p class="mb-1">Horizon Adventure</p>
