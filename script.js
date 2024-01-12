@@ -109,7 +109,7 @@ function liCreate(name, value, active) {
     };
     li.append(link);
     if (active) {
-        link.classList.add('text-white');
+        link.classList.add('text-black');
         link.classList.add('primary');
     }
     return li;
@@ -174,7 +174,7 @@ function showRoute(page) {
         button.innerHTML = 'Выбрать';
         button.classList.add('btn');
         button.classList.add('primary');
-        button.classList.add('text-white');
+        button.classList.add('text-black');
         button.onclick = () => {
             RouteButtonHandler(items[i], tr);
         };
@@ -254,7 +254,7 @@ function showGuide() {
         button.innerHTML = 'Выбрать';
         button.classList.add('btn');
         button.classList.add('primary');
-        button.classList.add('text-white');
+        button.classList.add('text-black');
         button.onclick = () => {
             guideBtnHandler(items[i], tr);
         };

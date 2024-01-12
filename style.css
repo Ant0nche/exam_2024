@@ -2,9 +2,12 @@ body {
     background-color: white;
 }
 
-.primary {
-    background-color: #7f1eff; 
+.btn.primary {
+    background-color: #7f1eff;  /* Цвет фона */
+    color: white; /* Цвет текста */
+    /* Дополнительные стили */
 }
+
 
 .primary:hover {
     background-color: #7f1eff; 
@@ -75,4 +78,9 @@ body {
 .fullwrap:hover .fullcap {
 
   opacity: 1;
+}
+
+.btn-secondary {
+    background-color: #5e5e5e; 
+    color: #7f1eff; 
 }

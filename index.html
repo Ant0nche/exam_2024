@@ -4,258 +4,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Horizon Adventure</title> 
+    <title>Horizon Adventure</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
     <link rel="stylesheet" href="Style.css">
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=d8a2558a-22b4-47fa-9d5c-ada760a9898a" type="text/javascript"></script>
 </head>
 
-    <body>
-        <header class="border-bottom">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container">
-                    <a class="navbar-brand me-0" href="index.html">
-                        <img src="Photo_hor.jpg" alt="Логотип Горизонт Адвенчур" class="rounded-circle" style="height: 40px; width: 40px;">
-                        Horizon Adventure
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.html">Главная</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="lk.html">Личный кабинет</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>    
-        </header>
-        
-        <body>
-            <div class="container mt-5">
-                <div class="text-center">
-                    <h1>Horizon Adventure</h1>
-                    <p class="lead">Туристическая компания, специализирующаяся на организации приключенческих туров. Мы предлагаем уникальные путешествия по самым живописным уголкам мира, сочетая приключение, безопасность и качественный сервис.</p>
-                    <img src="Photo_hor2.jpg" alt="Image" class="img-fluid">
-                </div>
-            
-                <div class="container mt-5">
-                    <h2 class="text-center mb-4">Наши достоинства</h2>
-                    <div class="row">
-                        <div class="col-md-4 mb-3">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h5 class="card-title">Индивидуальный подход</h5>
-                                    <p class="card-text">Персонализированные туры, соответствующие вашим интересам и предпочтениям.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h5 class="card-title">Опытные гиды</h5>
-                                    <p class="card-text">Профессионалы с глубокими знаниями о местной культуре и истории.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h5 class="card-title">Уникальные маршруты</h5>
-                                    <p class="card-text">Эксклюзивные туристические маршруты, недоступные в других компаниях.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h5 class="card-title">Поддержка 24/7</h5>
-                                    <p class="card-text">Круглосуточная поддержка клиентов во время путешествий.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h5 class="card-title">Экологически ответственные туры</h5>
-                                    <p class="card-text">Соблюдение принципов устойчивого туризма и уважение к природе.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>                
-            </div>
-
-            <section class="map">
-                <div class="container">
-                    <div id="map" style="width: 100%; height: 600px"></div>
-                </div>
-            </section>
-            
-            <section id="routes">
-                <div class="container py-3 mt-5">
-                    <h2>Список маршрутов</h2>
-                    <form class="row" id="routes-form">
-                        <div class="col-12 col-lg-6 my-2">
-                            <input id="searchRoute" name="search" class="form-control" placeholder="Поиск" type="text">
-                        </div>
-                        <div class="col-12 col-lg-6 my-2">
-                            <select class="form-control" id="objects" name="objects" placeholder="Основной объект">
-                            </select>
-                        </div>
-                    </form>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr >
-                                    <th scope="col">Название</th>
-                                    <th scope="col">Описание</th>
-                                    <th scope="col">Основные объекты</th>
-                                    <th scope="col"></th>
-                                </tr>
-                            </thead>
-                            <tbody id="routeTableBody" class="tableRoutes">
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <ul class="pagination">
-                        </ul>
-                    </div>
-                </div>
-            </section>
-            
-            <section id="guide" class="hide">
-                <div class="container py-3">
-                    <h2 class="guide-route"></h2>
-                    <div class="guide-error-block"></div>
-                    <form class="row" id="guide-form">
-                        <div class="col-12 col-lg-5 my-2">
-                            <label for="languages" class="form-label">Выбор языка</label>
-                            <select class="form-control" id="languages">
-                            </select>
-                        </div>
-                        <div class="col-12 col-lg-5 my-2">
-                            <label class="form-label">Опыт работы</label>
-                            <div class="row">
-                                <div class="col-6">
-                                    <input id="xpFrom" name="xpFrom" class="form-control" placeholder="От" type="number"
-                                        value="1">
-                                </div>
-                                <div class="col-6">
-                                    <input id="xpTo" name="xpTo" class="form-control" placeholder="До" type="number"
-                                        value="15">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-2">
-                            <button id="submit-guide" type="submit" class="btn primary text-white">Поиск</button>
-                        </div>
-                    </form>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col">ФИО</th>
-                                    <th scope="col">Язык</th>
-                                    <th scope="col">Стаж</th>
-                                    <th scope="col">Цена</th>
-                                    <th scope="col"></th>
-                                </tr>
-                            </thead>
-                            <tbody id="guideTable">
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-
-            <section id="order" class="hide">
-                <div class="py-3 justify-content-center d-flex">
-                    <button type="button" class="btn primary text-white" data-bs-toggle="modal"
-                        data-bs-target="#orderModal">Оформить заказ</button>
-            
-                    <div class="modal fade" id="orderModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                        aria-labelledby="orderModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="orderModalLabel">Оформление заявки</h1>
-                                    <button id="modal-close" type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div id="modal-errors"></div>
-                                    <form class="row">
-                                        <div class="col-12">
-                                            <p>Экскурсовод: <b id="fullname"></b></p>
-                                        </div>
-                                        <div class="col-12">
-                                            <p>Название маршрута: <b id="route-name"></b></p>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <label class="form-label" for="date">Дата</label>
-                                                    <input id="date" name="date" class="form-control" type="date">
-                                                </div>
-                                                <div class="col-6">
-                                                    <label class="form-label" for="time">Время начала</label>
-                                                    <input id="time" name="time" class="form-control" type="time" value="09:00">
-                                                </div>
-                                                <div class="col-6">
-                                                    <label class="form-label" for="duration">Длительность экскурсии</label>
-                                                    <select class="form-control" id="duration">
-                                                        <option value="1">1 час</option>
-                                                        <option value="2">2 часа</option>
-                                                        <option value="3">3 часа</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-6">
-                                                    <label class="form-label" for="count">Количество участников</label>
-                                                    <input id="count" name="count" class="form-control" type="number" value="1" min="1" max="20">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <p>Дополнительные опции:</p>
-                                        </div>
-                                        <div class="col-12">
-                                            <input id="option1" name="option" type="checkbox">
-                                            <label for="option1" class="">Быстрый выезд гида (в течение часа)</label>
-                                            <p class="link">Повышает стоимость на 30%</p>
-                                        </div>
-                                        <div class="col-12">
-                                            <input id="option2" name="option" type="checkbox">
-                                            <label for="option2" class="">Сопровождение сурдопереводчика</label>
-                                            <p class="link">Увеличивает стоимость на 15% (для 1-5 участников) и на 25% (для 6-10 участников). Недоступно для более 10 участников.</p>
-                                        </div>
-                                        <div class="col-12">
-                                            <p>Итоговая стоимость: <b id="price"></b></p>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                                    <button id="modal-submit" type="button" class="btn primary text-white disabled">Отправить</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        <footer class="text-body-secondary bg-body-secondary py-5 mt-2">
+<body>
+    <header class="border-bottom">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-                <p class="mb-1">Horizon Adventure</p>
-                <p class="mb-1">Контакты: +7(987)564-32-11</p>
+                <a class="navbar-brand me-0" href="index.html">
+                    <img src="Photo_hor.jpg" alt="Логотип Горизонт Адвенчур" class="rounded-circle" style="height: 40px; width: 40px;">
+                    Horizon Adventure
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Главная</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="lk.html">Личный кабинет</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </footer>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-                <script src="script.js"></script>
-    </body>
+        </nav>
+    </header>
+
+    <div class="container mt-5">
+        <div class="text-center">
+            <h1>Horizon Adventure</h1>
+            <p class="lead">Туристическая компания, специализирующаяся на организации приключенческих туров. Мы предлагаем уникальные путешествия по самым живописным уголкам мира, сочетая приключение, безопасность и качественный сервис.</p>
+            <img src="Photo_hor2.jpg" alt="Image" class="img-fluid">
+        </div>
+
+        <div class="container mt-5">
+            <h2 class="text-center mb-4">Наши достоинства</h2>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Индивидуальный подход</h5>
+                            <p class="card-text">Персонализированные туры, соответствующие вашим интересам и предпочтениям.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Опытные гиды</h5>
+                            <p class="card-text">Профессионалы с глубокими знаниями о местной культуре и истории.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Уникальные маршруты</h5>
+                            <p class="card-text">Эксклюзивные туристические маршруты, недоступные в других компаниях.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Поддержка 24/7</h5>
+                            <p class="card-text">Круглосуточная поддержка клиентов во время путешествий.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Экологически ответственные туры</h5>
+                            <p class="card-text">Соблюдение принципов устойчивого туризма и уважение к природе.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="map">
+        <div class="container">
+            <div id="map" style="width: 100%; height: 600px"></div>
+        </div>
+    </section>
+
+    <section id="routes">
+        <div class="container py-3 mt-5">
+            <h2>Список маршрутов</h2>
+            <form class="row" id="routes-form">
+                <div class="col-12 col-lg-6 my-2">
+                    <input id="searchRoute" name="search" class="form-control" placeholder="Поиск" type="text">
+                </div>
+                <div class="col-12 col-lg-6 my-2">
+                    <select class="form-control" id="objects" name="objects" placeholder="Основной объект">
+                    </select>
+                </div>
+            </form>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Название</th>
+                            <th scope="col">Описание</th>
+                            <th scope="col">Основные объекты</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="routeTableBody" class="tableRoutes">
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-flex justify-content-center">
+                <ul class="pagination">
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="guide" class="hide">
+        <div class="container py-3">
+            <h2 class="guide-route"></h2>
+            <div class="guide-error-block"></div>
+            <form class="row" id="guide-form">
+                <div class="col-12 col-lg-5 my-2">
+                    <label for="languages" class="form-label">Выбор языка</label>
+                    <select class="form-control" id="languages">
+                    </select>
+                </div>
+                <div class="col-12 col-lg-5 my-2">
+                    <label class="form-label">Опыт работы</label>
+                    <div class="row">
+                        <div class="col-6">
+                            <input id="xpFrom" name="xpFrom" class="form-control" placeholder="От" type="number" value="1">
+                        </div>
+                        <div class="col-6">
+                            <input id="xpTo" name="xpTo" class="form-control" placeholder="До" type="number" value="15">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-2">
+                    <button id="submit-guide" type="submit" class="btn primary text-white">Поиск</button>
+                </div>
+            </form>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">ФИО</th>
+                            <th scope="col">Язык</th>
+                            <th scope="col">Стаж</th>
+                            <th scope="col">Цена</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="guideTable">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section id="order" class="hide">
+        <div class="py-3 justify-content-center d-flex">
+            <button type="button" class="btn primary text-white" data-bs-toggle="modal" data-bs-target="#orderModal">Оформить заказ</button>
+
+            <div class="modal fade" id="orderModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="orderModalLabel">Оформление заявки</h1>
+                            <button id="modal-close" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="modal-errors"></div>
+                            <form class="row">
+                                <div class="col-12">
+                                    <p>Экскурсовод: <b id="fullname"></b></p>
+                                </div>
+                                <div class="col-12">
+                                    <p>Название маршрута: <b id="route-name"></b></p>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label class="form-label" for="date">Дата</label>
+                                            <input id="date" name="date" class="form-control" type="date">
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="form-label" for="time">Время начала</label>
+                                            <input id="time" name="time" class="form-control" type="time" value="09:00">
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="form-label" for="duration">Длительность экскурсии</label>
+                                            <select class="form-control" id="duration">
+                                                <option value="1">1 час</option>
+                                                <option value="2">2 часа</option>
+                                                <option value="3">3 часа</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="form-label" for="count">Количество участников</label>
+                                            <input id="count" name="count" class="form-control" type="number" value="1" min="1" max="20">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <p>Дополнительные опции:</p>
+                                </div>
+                                <div class="col-12">
+                                    <input id="option1" name="option" type="checkbox">
+                                    <label for="option1" class="">Быстрый выезд гида (в течение часа)</label>
+                                    <p class="link">Повышает стоимость на 30%</p>
+                                </div>
+                                <div class="col-12">
+                                    <input id="option2" name="option" type="checkbox">
+                                    <label for="option2" class="">Сопровождение сурдопереводчика</label>
+                                    <p class="link">Увеличивает стоимость на 15% (для 1-5 участников) и на 25% (для 6-10 участников). Недоступно для более 10 участников.</p>
+                                </div>
+                                <div class="col-12">
+                                    <p>Итоговая стоимость: <b id="price"></b></p>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                            <button id="modal-submit" type="button" class="btn primary text-white disabled">Отправить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-body-secondary bg-body-secondary py-5 mt-2">
+        <div class="container">
+            <p class="mb-1">Horizon Adventure</p>
+            <p class="mb-1">Контакты: +7(987)564-32-11</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+
 </html>
