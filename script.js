@@ -21,7 +21,7 @@ function init() {
             zoom: 10
         }, {
             searchControlProvider: 'yandex#search'
-        }),
+        }),xxxx
             objectManager = new ymaps.ObjectManager({
                 // Чтобы метки начали кластеризоваться, выставляем опцию.
                 clusterize: true,

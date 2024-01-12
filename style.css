@@ -2,28 +2,28 @@ body {
     background-color: white;
 }
 
-primary {
-    background-color: black; 
+.primary {
+    background-color: #7f1eff; 
 }
 
-primary:hover {
-    background-color: black;
+.primary:hover {
+    background-color: #7f1eff; 
 }
 
-routes {
+.routes {
      background-color: white;
 }
 
-main-section {
+.main-section {
     flex-shrink: 0; 
     background-size: cover;
 }
 
-hide {
+.hide {
     display: none;
 }
 
-btn-close {
+.btn-close {
     width: 30px;
     height: 30px;
     background-color: transparent;
@@ -32,7 +32,7 @@ btn-close {
     cursor: pointer;
 }
 
-btn-close:before, .btn-close:after {
+.btn-close:before, .btn-close:after {
     content: '';
     position: absolute;
     height: 2px;
@@ -43,23 +43,23 @@ btn-close:before, .btn-close:after {
     background: #000;
 }
 
-btn-close:before {
+.btn-close:before {
     transform: rotate(45deg);
 }
 
-btn-close:after {
+.btn-close:after {
     transform: rotate(-45deg);
 }
 
-fullwrap img { 
+.fullwrap img { 
     width: 100%; 
 }
 
-fullwrap {
+.fullwrap {
   position: relative; 
 }
  
-fullcap {
+.fullcap {
   position: absolute; 
   height: 100%;
   width: 94%;
@@ -67,12 +67,12 @@ fullcap {
   display: flex; justify-content: center; align-items: center;
 }
  
-fullcap {
+.fullcap {
   opacity: 0;
   transition: opacity 0.3s;
 }
 
-fullwrap:hover .fullcap {
+.fullwrap:hover .fullcap {
 
   opacity: 1;
 }
