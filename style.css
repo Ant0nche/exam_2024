@@ -2,19 +2,29 @@ body {
     background-color: white;
 }
 
-.btn.primary {
-    background-color: #7f1eff;  /* Цвет фона */
-    color: white; /* Цвет текста */
-    /* Дополнительные стили */
+.primary {
+    background-color: #7f1eff; 
 }
-
 
 .primary:hover {
     background-color: #7f1eff; 
 }
 
-.routes {
-     background-color: white;
+.link {
+    color: #000000;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: #000000;
+}
+
+#routes {
+    background-color: white;
+}
+
+.secondary {
+    background-color: #5e5e5e; 
 }
 
 .main-section {
@@ -24,6 +34,33 @@ body {
 
 .hide {
     display: none;
+}
+
+
+.fullwrap img { 
+    width: 100%; 
+}
+
+.fullwrap {
+  position: relative; 
+}
+ 
+.fullcap {
+  position: absolute; 
+  height: 100%;
+  width: 94%;
+  background-color: rgba(49, 48, 48, 0.7);
+  display: flex; justify-content: center; align-items: center;
+}
+ 
+.fullcap {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.fullwrap:hover .fullcap {
+
+  opacity: 1;
 }
 
 .btn-close {
@@ -52,35 +89,4 @@ body {
 
 .btn-close:after {
     transform: rotate(-45deg);
-}
-
-.fullwrap img { 
-    width: 100%; 
-}
-
-.fullwrap {
-  position: relative; 
-}
- 
-.fullcap {
-  position: absolute; 
-  height: 100%;
-  width: 94%;
-  background-color: rgba(49, 48, 48, 0.7);
-  display: flex; justify-content: center; align-items: center;
-}
- 
-.fullcap {
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.fullwrap:hover .fullcap {
-
-  opacity: 1;
-}
-
-.btn-secondary {
-    background-color: #5e5e5e; 
-    color: #7f1eff; 
 }
