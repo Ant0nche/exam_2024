@@ -3,11 +3,11 @@ body {
 }
 
 .primary {
-    background-color: #7f1eff; 
+    background-color: blue; 
 }
 
 .primary:hover {
-    background-color: #7f1eff; 
+    background-color: blue; 
 }
 
 #routes {
