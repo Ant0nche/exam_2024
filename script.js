@@ -216,6 +216,78 @@ function findRoute(form) {
     showRoute(1);
 }
 
+/*Отображает информацию о гидах.*/
+function showGuide() {
+    let table = document.getElementById('guideTable');
+    let items = getGuid();
+    table.innerHTML = '';
+    for (let i = 0; i < items.length; i++) {
+        let tr = document.createElement('tr');
+        if (selectedGuide != undefined && items[i].id == selectedGuide.id) {
+            tr.classList.add('table-secondary');
+        }
+        let img = document.createElement('th');
+        let icon = document.createElement('i');
+        icon.classList.add('bi');
+        icon.classList.add('bi-person-circle');
+        img.append(icon);
+        tr.append(img);
+
+        let name = document.createElement('th');
+        name.innerHTML = items[i].name;
+        tr.append(name);
+
+        let language = document.createElement('td');
+        language.innerHTML = items[i].language;
+        tr.append(language);
+
+        let workExperience = document.createElement('td');
+        workExperience.innerHTML = items[i].workExperience;
+        tr.append(workExperience);
+
+        let price = document.createElement('td');
+        price.innerHTML = items[i].pricePerHour + ' руб/час';
+        tr.append(price);
+
+        let buttonTd = document.createElement('td');
+        let button = document.createElement('button');
+        button.innerHTML = 'Выбрать';
+        button.classList.add('btn');
+        button.classList.add('primary');
+        button.classList.add('text-white');
+        button.onclick = () => {
+            guideBtnHandler(items[i], tr);
+        };
+        buttonTd.append(button);
+        tr.append(buttonTd);
+        table.append(tr);
+    }
+}
+
+/*Получает информацию о гидах для определенного маршрута.*/
+async function getGuides(id) {
+    let response = await fetch(getURL(`routes/${id}/guides`));
+    let items = await response.json();
+    sessionStorage.setItem('guides', JSON.stringify(items));
+}
+
+/*Обрабатывает выбор гида.*/
+function guideBtnHandler(item, tableRow) {
+    selectedGuide = item;
+    clearSelect('guideTable');
+    tableRow.classList.add('table-secondary');
+    showOrder();
+}
+
+/*Возвращает информацию о гидах.*/
+function getGuid() {
+    let items = searchedGuides;
+    if (items == undefined || items.length == 0) {
+        items = JSON.parse(sessionStorage.getItem('guides'));
+    }
+    return items;
+}
+
 /*Инициализирует страницу при загрузке.*/
 window.onload = async () => {
     await getRoute();

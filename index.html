@@ -128,22 +128,52 @@
                     </div>
                 </div>
             </section>
-            <div class="container mt-5">
-                <h1 class="text-center mb-4" id="section2">Наши гиды</h1>
-                <table class="table table-hover table-bordered text-center">
-                    <thead>
-                        <tr>
-                            <th scope="col">ФИО</th>
-                            <th scope="col">Языки</th>
-                            <th scope="col">Опыт работы</th>
-                            <th scope="col">Стоимость</th>
-                            <th scope="col">Выбрать</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
+            
+            <section id="guide" class="hide">
+                <div class="container py-3">
+                    <h2 class="guide-route"></h2>
+                    <div class="guide-error-block"></div>
+                    <form class="row" id="guide-form">
+                        <div class="col-12 col-lg-5 my-2">
+                            <label for="languages" class="form-label">Выбор языка</label>
+                            <select class="form-control" id="languages">
+                            </select>
+                        </div>
+                        <div class="col-12 col-lg-5 my-2">
+                            <label class="form-label">Опыт работы</label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <input id="xpFrom" name="xpFrom" class="form-control" placeholder="От" type="number"
+                                        value="1">
+                                </div>
+                                <div class="col-6">
+                                    <input id="xpTo" name="xpTo" class="form-control" placeholder="До" type="number"
+                                        value="15">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-2">
+                            <button id="submit-guide" type="submit" class="btn primary text-white">Поиск</button>
+                        </div>
+                    </form>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">ФИО</th>
+                                    <th scope="col">Язык</th>
+                                    <th scope="col">Стаж</th>
+                                    <th scope="col">Цена</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="guideTable">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
         <footer class="text-body-secondary bg-body-secondary py-5 mt-2">
             <div class="container">
                 <p class="mb-1">Horizon Adventure</p>
