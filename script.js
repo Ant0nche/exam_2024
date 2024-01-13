@@ -367,7 +367,6 @@ function formUpd(modal) {
     let time = modal.target.querySelector('#time').value;
     let date = modal.target.querySelector('#date').value;
     let option1 = modal.target.querySelector('#option1').checked;
-    let option2 = modal.target.querySelector('#option2').checked;
     let btn = modal.target.querySelector('#modal-submit');
     let hour = +time.split(':')[0];
     let minutes = +time.split(':')[1];
@@ -389,8 +388,7 @@ function formUpd(modal) {
     btn.classList.remove('disabled');
     let price = selectedGuide.pricePerHour * duration * isThisDayOff + morningPrice + eveningPrice + visitorsPrice;
     let option1Price = option1 ? price * 0.3 : 0;
-    let option2Price = option2 ? count * 500 : 0;
-    price += option2Price + option1Price;
+    price += + option1Price;
     price = Math.round(price);
     modal.target.querySelector('#price').innerHTML = price;
     btn.onclick = async () => {
@@ -403,7 +401,6 @@ function formUpd(modal) {
         form.append('persons', count);
         form.append('price', price);
         form.append('optionFirst', +option1);
-        form.append('optionSecond', +option2);
         try {
             let response = await fetch(getURL('orders'), {
                 method: 'POST',
